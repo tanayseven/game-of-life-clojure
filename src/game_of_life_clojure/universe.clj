@@ -8,7 +8,7 @@
       [& cells]
       (set cells))
 
-(defn neighboring-cells-for
+(defn -potential-neighboring-cells-for
       [cell]
       (let 
       [x (first cell)
@@ -18,6 +18,19 @@
              [(+ x 1) (+ y 1)] [(- x 1) (- y 1)]
              [(- x 1) (+ y 1)] [(+ x 1) (- y 1)]])))
 
+(defn -actual-neighboring-cells-for
+      [cell universe]
+      (clojure.set/intersection 
+               universe 
+               (-potential-neighboring-cells-for cell)))
+
+(defn -check-conditions-for-live-cell
+     [cell universe]
+     (let [count-live-neighbours (count 
+                                    (-actual-neighboring-cells-for cell universe))]
+     (clojure.set/intersection 
+            (and (> count-live-neighbours 1) (< count-live-neighbours 3)))))
+
 (defn universe-empty?
       [universe]
       (empty? universe))
@@ -25,8 +38,8 @@
 (defn next-generation-of-universe
       [universe]
       (let 
-      []
-      (set 
-         (filter #(> (count (clojure.set/intersection universe (neighboring-cells-for %))) 2) universe))))
+          [filter-fn #(-check-conditions-for-live-cell % universe)]
+          (set
+              (filter filter-fn universe))))
 
 
