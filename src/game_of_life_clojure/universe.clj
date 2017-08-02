@@ -45,5 +45,3 @@
           [filter-fn #(-check-conditions-for-live-cell % universe)]
           (set
               (filter filter-fn universe))))
-
-

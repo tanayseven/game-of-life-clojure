@@ -24,5 +24,9 @@
                  (is (not (universe-empty? (next-generation-of-universe (new-universe-of [0 0] [0 1] [0 2])))))))
 
 (deftest universe-with-three-adjacent-cells-to-next-generaton-should-have-one-cell
-        (testing "A universe with two neighbouring cells in one line should end up with one cell in the next generation"
-                 (is (= 1 (total-cells (next-generation-of-universe (new-universe-of [0 0] [0 1] [0 2])))))))
+        (testing "A universe with 3 cells in a diagonal pattern should end up with 1 cell in the next generation"
+                 (is (= 1 (total-cells (next-generation-of-universe (new-universe-of [0 0] [1 1] [2 2])))))))
+
+(deftest universe-with-four-adjacent-cells-to-next-generation-should-have-one-cell
+        (testing "A universe with 3 neighbouring cells in a diagonal pattern shoule end up with 2 cell in the next generaiton"
+                 (is (= 2 (total-cells (next-generation-of-universe (new-universe-of [0 0] [1 1] [2 2] [0 -1])))))))
