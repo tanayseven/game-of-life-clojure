@@ -22,3 +22,7 @@
 (deftest universe-with-three-adjacent-cells-to-next-generaton
         (testing "A universe with two neighbouring cells in one line should have one cell in the next generation"
                  (is (not (universe-empty? (next-generation-of-universe (new-universe-of [0 0] [0 1] [0 2])))))))
+
+(deftest universe-with-three-adjacent-cells-to-next-generaton-should-have-one-cell
+        (testing "A universe with two neighbouring cells in one line should end up with one cell in the next generation"
+                 (is (= 1 (total-cells (next-generation-of-universe (new-universe-of [0 0] [0 1] [0 2])))))))

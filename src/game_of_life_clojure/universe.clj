@@ -35,6 +35,10 @@
       [universe]
       (empty? universe))
 
+(defn total-cells
+      [universe]
+      (count universe))
+
 (defn next-generation-of-universe
       [universe]
       (let 
