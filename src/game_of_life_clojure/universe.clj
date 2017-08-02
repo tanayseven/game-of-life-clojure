@@ -1,4 +1,5 @@
-(ns game-of-life-clojure.universe)
+(ns game-of-life-clojure.universe
+      (:require [clojure.set :refer :all]))
 (defn new-empty-universe
       []
       (set []))
@@ -9,10 +10,13 @@
 
 (defn neighboring-cells-for
       [cell]
-      (set [cell (+ cell 1)] [cell (- cell 1)]
-           [(+ cell 1) cell] [(- cell 1) cell]
-           [(+ cell 1) (+ cell 1)] [(- cell 1) (- cell 1)]
-           [(- cell 1) (+ cell 1)] [(+ cell 1) (- cell 1)]))
+      (let 
+      [x (first cell)
+       y (second cell)]
+        (set [[x (+ y 1)] [x (- y 1)]
+             [(+ x 1) y] [(- x 1) y]
+             [(+ x 1) (+ y 1)] [(- x 1) (- y 1)]
+             [(- x 1) (+ y 1)] [(+ x 1) (- y 1)]])))
 
 (defn universe-empty?
       [universe]
@@ -20,6 +24,9 @@
 
 (defn next-generation-of-universe
       [universe]
-      (let [alive-neighbours 
-                (clojure.set/intersection universe ())]
-           (set (remove #(= [0 0] %) universe))))
+      (let 
+      []
+      (set 
+         (filter #(> (count (clojure.set/intersection universe (neighboring-cells-for %))) 2) universe))))
+
+

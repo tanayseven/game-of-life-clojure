@@ -16,7 +16,7 @@
                   (is (universe-empty? (next-generation-of-universe (new-universe-of [0 0]))))))
 
 (deftest universe-with-two-cells-to-next-generation
-         (testing "A universe with two neighbouring cells should have no cells in the next generation"
-                  (is (universe-empty? (next-generation-of-universe (new-universe-of [0 0] [0 1]))))))
+        (testing "A universe with two neighbouring cells should have no cells in the next generation"
+                 (is (universe-empty? (next-generation-of-universe (new-universe-of [0 0] [0 1]))))))
 
 
